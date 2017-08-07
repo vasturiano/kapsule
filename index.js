@@ -1,5 +1,5 @@
 class Prop {
-	constructor(name, { defaultVal = null, triggerUpdate = true, onChange = (newVal, state) => {}}) {
+	constructor(name, { default: defaultVal = null, triggerUpdate = true, onChange = (newVal, state) => {}}) {
 		this.name = name;
 		this.defaultVal = defaultVal;
 		this.triggerUpdate = triggerUpdate;

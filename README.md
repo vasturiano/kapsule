@@ -25,7 +25,7 @@ or even
 const ColoredText = Kapsule({
     
     props: {
-        color: { defaultVal: 'red' },
+        color: { default: 'red' },
         text: {}
     },
     
