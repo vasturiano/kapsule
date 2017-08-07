@@ -1,0 +1,35 @@
+<script src="dist/kapsule.js"></script>
+
+<body></body>
+
+<script>
+
+    // Define component
+    const ColoredText = Kapsule({
+
+        props: {
+            color: { defaultVal: 'red' },
+            text: {}
+        },
+
+        init(domElement, state) {
+            state.elem = document.createElement('span');
+            domElement.appendChild(state.elem);
+        },
+
+        update(state) {
+            state.elem.style.color = state.color;
+            state.elem.textContent = state.text;
+        }
+
+    });
+
+    // Instantiate
+    let myText = ColoredText();
+
+    // Render
+    myText(document.body)
+        .color('blue')
+        .text('foo');
+
+</script>
