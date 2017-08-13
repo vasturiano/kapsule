@@ -8,6 +8,7 @@ class Prop {
 }
 
 export default function ({
+		stateInit = {},
 		props: rawProps = {},
 		methods = {},
 		init: initFn = (() => {}),
@@ -19,16 +20,17 @@ export default function ({
 		new Prop(propName, rawProps[propName])
 	);
 
-	return function() {
+	return function(options = {}) {
 
 		// Holds component state
-		let state = {
-			initialised: false
-		};
+		let state = Object.assign({}, stateInit, {
+			initialised: false,
+			_rerender: digest	// Expose digest method
+		});
 
 		// Component constructor
 		function comp(nodeElement) {
-			initStatic(nodeElement);
+			initStatic(nodeElement, options);
 			digest();
 
 			return comp;
@@ -41,8 +43,8 @@ export default function ({
 			prop.onChange(prop.defaultVal, state);
 
 			function getSetProp(prop, redigest = false,  onChange = (newVal, state) => {}) {
-				return _ => {
-					if (!arguments.length) { return state[prop] }
+				return function(_) {
+					if (!arguments.length) { return state[prop] } // Getter mode
 					state[prop] = _;
 					onChange(_, state);
 					if (redigest) { digest(); }
@@ -69,8 +71,8 @@ export default function ({
 
 		//
 
-		function initStatic(nodeElement) {
-			initFn(nodeElement, state);
+		function initStatic(nodeElement, options) {
+			initFn(nodeElement, state, options);
 			state.initialised = true;
 		}
 
