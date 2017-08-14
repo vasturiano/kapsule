@@ -40,13 +40,13 @@ export default function ({
 		props.forEach(prop => {
 			comp[prop.name] = getSetProp(prop.name, prop.triggerUpdate, prop.onChange);
 			state[prop.name] = prop.defaultVal;
-			prop.onChange(prop.defaultVal, state);
+			prop.onChange.call(comp, prop.defaultVal, state);
 
 			function getSetProp(prop, redigest = false,  onChange = (newVal, state) => {}) {
 				return function(_) {
 					if (!arguments.length) { return state[prop] } // Getter mode
 					state[prop] = _;
-					onChange(_, state);
+					onChange.call(comp, _, state);
 					if (redigest) { digest(); }
 					return comp;
 				}
@@ -55,14 +55,14 @@ export default function ({
 
 		// Other methods
 		Object.keys(methods).forEach(methodName => {
-			comp[methodName] = (...args) => methods[methodName](state, ...args);
+			comp[methodName] = (...args) => methods[methodName].call(comp, state, ...args);
 		});
 
 		// Reset all component props to their default value
 		comp.resetProps = function() {
 			props.forEach(prop => {
 				state[prop.name] = prop.defaultVal;
-				prop.onChange(prop.defaultVal, state);
+				prop.onChange.call(comp, prop.defaultVal, state);
 			});
 			digest();	// Re-digest after resetting props
 
@@ -72,13 +72,13 @@ export default function ({
 		//
 
 		function initStatic(nodeElement, options) {
-			initFn(nodeElement, state, options);
+			initFn.call(comp, nodeElement, state, options);
 			state.initialised = true;
 		}
 
 		function digest() {
 			if (!state.initialised) { return; }
-			updateFn(state);
+			updateFn.call(comp, state);
 		}
 
 		return comp;
