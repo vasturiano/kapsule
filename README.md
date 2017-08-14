@@ -29,12 +29,12 @@ const ColoredText = Kapsule({
         text: {}
     },
     
-    init: (domElement, state) => {
+    init(domElement, state) {
         state.elem = document.createElement('span');
         domElement.appendChild(state.elem);
     },
     
-    update: state => {
+    update(state) {
         state.elem.style.color = state.color;
         state.elem.textContent = state.text;
     }
