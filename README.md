@@ -55,10 +55,3 @@ myText(<myDOMElement>)
     .color('blue')
     .text('foo');
 ```
-
-## How to build
-
-```
-npm install
-npm run build
-```
