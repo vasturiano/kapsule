@@ -1,3 +1,5 @@
+import debounce from 'debounce';
+
 class Prop {
 	constructor(name, { default: defaultVal = null, triggerUpdate = true, onChange = (newVal, state) => {}}) {
 		this.name = name;
@@ -76,10 +78,10 @@ export default function ({
 			state.initialised = true;
 		}
 
-		function digest() {
+		const digest = debounce(() => {
 			if (!state.initialised) { return; }
 			updateFn.call(comp, state);
-		}
+		}, 1);
 
 		return comp;
 	}
