@@ -23,16 +23,23 @@
   },
   "homepage": "https://github.com/vasturiano/kapsule",
   "scripts": {
-    "build": "rm -rf dist && mkdir dist && rollup -f umd -n Kapsule --banner \"$(preamble)\" -o dist/kapsule.js -- index.js",
-    "watch": "rollup -w -f umd -n Kapsule -o dist/kapsule.js -- index.js",
-    "minify": "uglifyjs dist/kapsule.js -o dist/kapsule.min.js -c -m --preamble \"$(preamble)\"",
+    "build": "webpack",
+    "watch": "webpack --progress --colors --watch",
+    "minify": "uglifyjs dist/kapsule.js -o dist/kapsule.min.js -c -m",
     "prepublish": "npm run build && npm run minify"
   },
   "dependencies": {},
   "devDependencies": {
-    "package-preamble": "~0.0.2",
-    "rollup": "~0.41.6",
-    "rollup-watch": "^3.2",
-    "uglify-js-es6": "^2.8.9"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-module-exports": "^0.2.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.7",
+    "style-loader": "^0.18.2",
+    "uglify-js": "^3.1.0",
+    "webpack": "^3.5.6"
   }
 }
