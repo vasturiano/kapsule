@@ -1,6 +1,6 @@
 {
   "name": "kapsule",
-  "version": "1.3.1",
+  "version": "1.4.0",
   "description": "A Simple Web Component library",
   "main": "dist/kapsule.js",
   "jsnext:main": "index",
