@@ -127,17 +127,17 @@ Extended prop example:
 }
 ```
  
-#####<b>defaultVal</b>
+##### <b>defaultVal</b>
 (default: `null`)
 
 This defines the default value of the prop if it's not set by the instance consumer.
 
-#####<b>triggerUpdate</b>
+##### <b>triggerUpdate</b>
 (default: `true`)
 
 This defines whether changes to this prop should trigger the component's `update` method. Generally, if the `update` method does not take this prop into account, you can save some performance by setting this to `false`.
 
-#####<b>onChange(newVal, state)</b>
+##### <b>onChange(newVal, state)</b>
 (default: `null`)
 
 Here you can specify an event handler that gets triggered whenever this property is modified by the instance consumer. In some circumstances it's useful to keep update changes here instead of in the `update` method to isolate prop-specific functionality.
