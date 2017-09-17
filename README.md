@@ -45,7 +45,7 @@ const ColoredText = Kapsule({
 ### Instantiate the component
 
 ```
-let myText = ColoredText();
+const myText = ColoredText();
 ```
 
 ### Render
