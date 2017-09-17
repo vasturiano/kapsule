@@ -15,7 +15,7 @@ var Kapsule = require('kapsule');
 ```
 or even
 ```
-<script src="//unpkg.com/kapsule/dist/kapsule.min.js"></script>
+<script src="//unpkg.com/kapsule"></script>
 ```
 
 ## Usage example
