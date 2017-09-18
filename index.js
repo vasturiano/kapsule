@@ -26,8 +26,7 @@ export default function ({
 
 		// Holds component state
 		let state = Object.assign({}, stateInit, {
-			initialised: false,
-			_rerender: digest	// Expose digest method
+			initialised: false
 		});
 
 		// Component constructor
@@ -82,6 +81,8 @@ export default function ({
 			if (!state.initialised) { return; }
 			updateFn.call(comp, state);
 		}, 1);
+
+		state._rerender = digest; // Expose digest method
 
 		return comp;
 	}
