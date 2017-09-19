@@ -37,11 +37,19 @@ export default function ({
 			return comp;
 		}
 
+    const initStatic = function(nodeElement, options) {
+      initFn.call(comp, nodeElement, state, options);
+      state.initialised = true;
+    };
+
+    const digest = debounce(() => {
+      if (!state.initialised) { return; }
+      updateFn.call(comp, state);
+    }, 1);
+
 		// Getter/setter methods
 		props.forEach(prop => {
 			comp[prop.name] = getSetProp(prop.name, prop.triggerUpdate, prop.onChange);
-			state[prop.name] = prop.defaultVal;
-			prop.onChange.call(comp, prop.defaultVal, state);
 
 			function getSetProp(prop, redigest = false,  onChange = (newVal, state) => {}) {
 				return function(_) {
@@ -61,27 +69,15 @@ export default function ({
 
 		// Reset all component props to their default value
 		comp.resetProps = function() {
-			props.forEach(prop => {
-				state[prop.name] = prop.defaultVal;
-				prop.onChange.call(comp, prop.defaultVal, state);
-			});
-			digest();	// Re-digest after resetting props
-
+      props.forEach(prop => {
+        comp[prop.name](prop.defaultVal);
+      });
 			return comp;
 		};
 
 		//
 
-		function initStatic(nodeElement, options) {
-			initFn.call(comp, nodeElement, state, options);
-			state.initialised = true;
-		}
-
-		const digest = debounce(() => {
-			if (!state.initialised) { return; }
-			updateFn.call(comp, state);
-		}, 1);
-
+    comp.resetProps(); // Apply all prop defaults
 		state._rerender = digest; // Expose digest method
 
 		return comp;
