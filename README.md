@@ -2,7 +2,7 @@
 
 A Simple Web Component library, inspired by the [reusable charts pattern](https://bost.ocks.org/mike/chart/) commonly found in [D3](https://d3js.org/) components.
 
-There is also [react-kapsule](https://github.com/vasturiano/react-kapsule) for direct integration with React.
+See also [react-kapsule](https://github.com/vasturiano/react-kapsule) for direct integration with React.
 
 [![NPM](https://nodei.co/npm/kapsule.png?compact=true)](https://nodei.co/npm/kapsule/)
 
