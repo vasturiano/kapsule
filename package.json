@@ -1,6 +1,6 @@
 {
   "name": "kapsule",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "A Simple Web Component library",
   "main": "dist/kapsule.js",
   "jsnext:main": "index",
@@ -9,8 +9,10 @@
     "url": "git+https://github.com/vasturiano/kapsule.git"
   },
   "keywords": [
+    "kapsule",
     "web",
     "component",
+    "lifecycle",
     "simple"
   ],
   "author": {
