@@ -2,8 +2,8 @@
   "name": "kapsule",
   "version": "1.7.5",
   "description": "A Simple Web Component library",
-  "main": "dist/kapsule.js",
-  "jsnext:main": "index",
+  "main": "dist/kapsule.min.js",
+  "module": "index",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vasturiano/kapsule.git"
