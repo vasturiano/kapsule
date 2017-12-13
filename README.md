@@ -114,14 +114,14 @@ Each registered prop inside `props` will declare its own getter/setter method in
 
 If called without an argument, the method will function as a getter, returning the current value of the prop. If called with a value it will act as a setter, setting the value in the component's internal state, and returning the component's instance for convenience of method chaining.
 
-The <b>propConfig</b> object supports 3 properties: `defaultVal`, `triggerUpdate` and `onChange`.
+The <b>propConfig</b> object supports 3 properties: `default`, `triggerUpdate` and `onChange`.
 
 Extended prop example:
 ```
 {
     props: {
         propName: {
-            defaultVal: 6,
+            default: 6,
             triggerUpdate: false,
             onChange: function(newVal, state) { ... }
         }
@@ -129,7 +129,7 @@ Extended prop example:
 }
 ```
  
-##### <b>defaultVal</b>
+##### <b>default</b>
 (default: `null`)
 
 This defines the default value of the prop if it's not set by the instance consumer.
