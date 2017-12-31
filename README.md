@@ -95,9 +95,11 @@ const Comp = Kapsule({
         methodName: function(state, ...args) { ... },
         ... 
     },
-    stateInit: {
-        stateItem: initVal,
-        ...
+    stateInit() {
+        return {
+            stateItem: initVal,
+            ...
+        }
     },
     init(domNode, state, componentOptions) {
         ...
@@ -154,10 +156,20 @@ The exposed method will have the signature:
 
 The `this` context of each of this methods is set to the component's instance. If the method does not naturally return a value, it's advised to end the method with `return this;` so that it can be used in method chaining.
 
-#### <b>stateInit</b>: { stateItem: initVal, ... }
+#### <b>stateInit()</b>
  
-Use this section for initializing the values of any internal state. This should only be used for state that is not exposed externally via `props`.
+Use this method's return object to initialize the values of any internal state. This should only be used for state that is not exposed externally via `props`.
 This state initialization gets ran as soon as the component is instantiated, and before the `init` method is called.
+
+Example:
+```
+function stateInit() {
+    return {
+       stateItem: initVal,
+        ...
+    }
+}
+```
 
 #### <b>init(domNode, state, componentOptions)</b>
 

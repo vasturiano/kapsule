@@ -10,7 +10,7 @@ class Prop {
 }
 
 export default function ({
-    stateInit = {},
+    stateInit = (() => ({})),
     props: rawProps = {},
     methods = {},
     init: initFn = (() => {}),
@@ -25,9 +25,10 @@ export default function ({
     return function(options = {}) {
 
         // Holds component state
-        let state = Object.assign({}, stateInit, {
-            initialised: false
-        });
+        let state = Object.assign({},
+            stateInit instanceof Function ? stateInit() : stateInit, // Support plain objects for backwards compatibility
+            { initialised: false }
+        );
 
         // Component constructor
         function comp(nodeElement) {
