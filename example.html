@@ -4,37 +4,37 @@
 
 <script>
 
-    // Define component
-    const ColoredText = Kapsule({
+  // Define component
+  const ColoredText = Kapsule({
 
-        props: {
-            color: { default: 'red' },
-            text: {}
-        },
+    props: {
+      color: { default: 'red' },
+      text: {}
+    },
 
-        init(domElement, state) {
-            state.elem = document.createElement('span');
-            domElement.appendChild(state.elem);
-        },
+    init(domElement, state) {
+      state.elem = document.createElement('span');
+      domElement.appendChild(state.elem);
+    },
 
-        update(state) {
-            state.elem.style.color = state.color;
-            state.elem.textContent = state.text;
-        }
+    update(state) {
+      state.elem.style.color = state.color;
+      state.elem.textContent = state.text;
+    }
 
-    });
+  });
 
-    // Instantiate
-    const myText = ColoredText();
+  // Instantiate
+  const myText = ColoredText();
 
-    // Render
-    myText(document.body)
-        .color('blue')
-        .text('foo');
+  // Render
+  myText(document.body)
+    .color('blue')
+    .text('foo');
 
-    setTimeout(() => {
-        myText.color('orange')
-            .text('bar');
-    }, 2000);
+  setTimeout(() => {
+    myText.color('orange')
+      .text('bar');
+  }, 2000);
 
 </script>
