@@ -30,7 +30,7 @@
     "prepublish": "npm run build && npm run minify"
   },
   "dependencies": {
-    "debounce": "^1.0.2"
+    "debounce": "^1.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -41,8 +41,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.7",
-    "style-loader": "^0.19.0",
-    "uglify-js": "^3.1.0",
-    "webpack": "^3.5.6"
+    "style-loader": "^0.19.1",
+    "uglify-js": "^3.3.4",
+    "webpack": "^3.10.0"
   }
 }
