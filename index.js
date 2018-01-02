@@ -17,6 +17,7 @@ export default function ({
   stateInit = (() => ({})),
   props: rawProps = {},
   methods = {},
+  aliases = {},
   init: initFn = (() => {}),
   update: updateFn = (() => {})
 }) {
@@ -71,6 +72,9 @@ export default function ({
     Object.keys(methods).forEach(methodName => {
       comp[methodName] = (...args) => methods[methodName].call(comp, state, ...args);
     });
+
+    // Link aliases
+    Object.entries(aliases).forEach(([alias, target]) => comp[alias] = comp[target]);
 
     // Reset all component props to their default value
     comp.resetProps = function() {
