@@ -1,6 +1,6 @@
 # Kapsule
 
-A Simple Web Component library, inspired by the [reusable charts pattern](https://bost.ocks.org/mike/chart/) commonly found in [D3](https://d3js.org/) components.
+A closure based Web Component library, inspired by the [reusable charts pattern](https://bost.ocks.org/mike/chart/) commonly found in [D3](https://d3js.org/) components.
 
 See also [react-kapsule](https://github.com/vasturiano/react-kapsule) for direct integration with React.
 

@@ -1,7 +1,7 @@
 {
   "name": "kapsule",
   "version": "1.9.0",
-  "description": "A Simple Web Component library",
+  "description": "A closure based Web Component library",
   "main": "dist/kapsule.min.js",
   "repository": {
     "type": "git",
@@ -12,7 +12,9 @@
     "web",
     "component",
     "lifecycle",
-    "simple"
+    "reusable",
+    "closure",
+    "d3js"
   ],
   "author": {
     "name": "Vasco Asturiano",
