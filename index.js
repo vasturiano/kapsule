@@ -31,8 +31,8 @@ export default function ({
 
     // Holds component state
     let state = Object.assign({},
-        stateInit instanceof Function ? stateInit() : stateInit, // Support plain objects for backwards compatibility
-        { initialised: false }
+      stateInit instanceof Function ? stateInit(options) : stateInit, // Support plain objects for backwards compatibility
+      { initialised: false }
     );
 
     // Component constructor
