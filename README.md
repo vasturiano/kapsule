@@ -141,10 +141,11 @@ This defines the default value of the prop if it's not set by the instance consu
 
 This defines whether changes to this prop should trigger the component's `update` method. Generally, if the `update` method does not take this prop into account, you can save some performance by setting this to `false`.
 
-##### <b>onChange(newVal, state)</b>
+##### <b>onChange(newVal, state, prevVal)</b>
 (default: `null`)
 
 Here you can specify an event handler that gets triggered whenever this property is modified by the instance consumer. In some circumstances it's useful to keep update changes here instead of in the `update` method to isolate prop-specific functionality.
+The previous value is also included for convenience.
 
 The `this` context of this method is set to the component's instance.
 

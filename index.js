@@ -59,9 +59,10 @@ export default function ({
 
       function getSetProp(prop, redigest = false,  onChange = (newVal, state) => {}) {
         return function(_) {
-          if (!arguments.length) { return state[prop] } // Getter mode
+          const curVal = state[prop];
+          if (!arguments.length) { return curVal } // Getter mode
           state[prop] = _;
-          onChange.call(comp, _, state);
+          onChange.call(comp, _, state, curVal);
           if (redigest) { digest(); }
           return comp;
         }
