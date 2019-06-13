@@ -1,10 +1,13 @@
-# Kapsule
+Kapsule
+=======
+
+[![NPM package][npm-img]][npm-url]
+[![Build Size][build-size-img]][build-size-url]
+[![Dependencies][dependencies-img]][dependencies-url]
 
 A closure based Web Component library, inspired by the [reusable charts pattern](https://bost.ocks.org/mike/chart/) commonly found in [D3](https://d3js.org/) components.
 
 See also [react-kapsule](https://github.com/vasturiano/react-kapsule) for direct integration with React.
-
-[![NPM](https://nodei.co/npm/kapsule.png?compact=true)](https://nodei.co/npm/kapsule/)
 
 ## Quick start
 
@@ -226,3 +229,9 @@ myInstance
     .resetProps(); // propA gets reset to its default value
 ```
 
+[npm-img]: https://img.shields.io/npm/v/kapsule.svg
+[npm-url]: https://npmjs.org/package/kapsule
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/kapsule.svg
+[build-size-url]: https://bundlephobia.com/result?p=kapsule
+[dependencies-img]: https://img.shields.io/david/vasturiano/kapsule.svg
+[dependencies-url]: https://david-dm.org/vasturiano/kapsule
