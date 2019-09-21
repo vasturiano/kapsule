@@ -55,14 +55,16 @@ export default function ({
 
     // Getter/setter methods
     props.forEach(prop => {
-      comp[prop.name] = getSetProp(prop.name, prop.triggerUpdate, prop.onChange);
+      comp[prop.name] = getSetProp(prop.name, prop.triggerUpdate, prop.onChange, prop.defaultVal);
 
-      function getSetProp(prop, redigest = false,  onChange = (newVal, state) => {}) {
+      function getSetProp(prop, redigest = false,  onChange = (newVal, state) => {}, defaultVal = null) {
         return function(_) {
           const curVal = state[prop];
           if (!arguments.length) { return curVal } // Getter mode
-          state[prop] = _;
-          onChange.call(comp, _, state, curVal);
+
+          const val = _ === undefined ? defaultVal : _; // pick default if value passed is undefined
+          state[prop] = val;
+          onChange.call(comp, val, state, curVal);
           if (redigest) { digest(); }
           return comp;
         }
