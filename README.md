@@ -117,7 +117,7 @@ const Comp = Kapsule({
 
 Each registered prop inside `props` will declare its own getter/setter method in the component's instance state. This method will have the signature: `myInstance.propName(`[<i>propVal</i>]`)`.
 
-If called without an argument, the method will function as a getter, returning the current value of the prop. If called with a value it will act as a setter, setting the value in the component's internal state, and returning the component's instance for convenience of method chaining.
+If called without an argument, the method will function as a getter, returning the current value of the prop. If called with a value it will act as a setter, setting the value in the component's internal state, and returning the component's instance for convenience of method chaining. If the value passed in the setter is `undefined`, the default value will be applied.
 
 The <b>propConfig</b> object supports 3 properties: `default`, `triggerUpdate` and `onChange`.
 
