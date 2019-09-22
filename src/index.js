@@ -36,7 +36,7 @@ export default function ({
     );
 
     // keeps track of which props triggered an update
-    let updatedProps = {};
+    let changedProps = {};
 
     // Component constructor
     function comp(nodeElement) {
@@ -53,8 +53,8 @@ export default function ({
 
     const digest = debounce(() => {
       if (!state.initialised) { return; }
-      updateFn.call(comp, state, updatedProps);
-      updatedProps = {};
+      updateFn.call(comp, state, changedProps);
+      changedProps = {};
     }, 1);
 
     // Getter/setter methods
@@ -74,7 +74,7 @@ export default function ({
           const val = _ === undefined ? defaultVal : _; // pick default if value passed is undefined
           state[prop] = val;
           onChange.call(comp, val, state, curVal);
-          updatedProps[prop] = [val, curVal];
+          changedProps[prop] = [val, curVal];
 
           if (redigest) { digest(); }
           return comp;
