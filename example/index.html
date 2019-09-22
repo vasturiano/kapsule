@@ -1,5 +1,5 @@
-<script src="//unpkg.com/kapsule"></script>
-<!--<script src="../dist/kapsule.js"></script>-->
+<!--<script src="//unpkg.com/kapsule"></script>-->
+<script src="../dist/kapsule.js"></script>
 
 <body></body>
 
@@ -19,7 +19,8 @@
     },
 
     update(state, changedProps) {
-      console.log('Changed Props:', changedProps);
+      console.log('Changed Props:', Object.assign({}, ...Object.entries(changedProps).map(([prop, prevVal]) => ({ [prop]: { prevVal, newVal: state[prop] }}))));
+
       state.elem.style.color = state.color;
       state.elem.textContent = state.text;
     }

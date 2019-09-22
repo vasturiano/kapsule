@@ -76,9 +76,7 @@ export default function ({
           onChange.call(comp, val, state, curVal);
 
           // track changed props
-          changedProps.hasOwnProperty(prop)
-            ? changedProps[prop][0] = val
-            : changedProps[prop] = [val, curVal];
+          !changedProps.hasOwnProperty(prop) && (changedProps[prop] = curVal);
 
           if (redigest) { digest(); }
           return comp;

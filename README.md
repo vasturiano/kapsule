@@ -212,11 +212,11 @@ function update(state) {
 
 Note that multiple calls to `update()` due to prop changes are internally debounced for performance optimization. This is so that the consumer can request multiple chained prop changes without each one triggering an update, but it instead being batched as one update.
 
-The props that were updated since the last update cycle (or all if it's the first update) are included in the second argument `changedProps`. This is an object that includes all the updated props as keys, and the new and previous value as a tuple. For example:
+The props that were updated since the last update cycle (or all if it's the first update) are included in the second argument `changedProps`. This is an object that lists all the updated props and their previous value. For example:
 ```
 {
-  pxWidth: [50, 10] // [newVal, prevVal],
-  color: ['red', 'blue']
+  pxWidth: 10, // previous value of pxWidth
+  color: 'blue'
 }
 ```
 
