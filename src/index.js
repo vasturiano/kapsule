@@ -74,7 +74,11 @@ export default function ({
           const val = _ === undefined ? defaultVal : _; // pick default if value passed is undefined
           state[prop] = val;
           onChange.call(comp, val, state, curVal);
-          changedProps[prop] = [val, curVal];
+
+          // track changed props
+          changedProps.hasOwnProperty(prop)
+            ? changedProps[prop][0] = val
+            : changedProps[prop] = [val, curVal];
 
           if (redigest) { digest(); }
           return comp;
