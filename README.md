@@ -198,7 +198,7 @@ An internal state variable `initialised` indicates whether the instance has been
 The `this` context of this method is set to the component's instance.
 Returning a value from this method has no effect.
 
-#### <b>update(state)</b>
+#### <b>update(state, updateProps)</b>
 
 This method is triggered once right after the `init` method finishes, and afterwards whenever a `prop` changes. 
 This method should contain the DOM operations for the <b>dynamic</b> parts of the document that change according to the component `props`.
@@ -211,6 +211,16 @@ function update(state) {
 ```
 
 Note that multiple calls to `update()` due to prop changes are internally debounced for performance optimization. This is so that the consumer can request multiple chained prop changes without each one triggering an update, but it instead being batched as one update.
+
+The props that were updated since the last update cycle (or all if it's the first update) are included in the second argument `updatedProps`. This is an object that includes all the updated props as keys, and the new and previous value as a tuple. For example:
+```
+{
+  pxWidth: [50, 10] // [newVal, prevVal],
+  color: ['red', 'blue']
+}
+```
+
+When applying the initial default values, the previous prop value is referenced as `undefined`.
 
 The `this` context of this method is set to the component's instance.
 Returning a value from this method has no effect.

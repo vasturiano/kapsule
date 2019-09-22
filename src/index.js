@@ -35,6 +35,9 @@ export default function ({
       { initialised: false }
     );
 
+    // keeps track of which props triggered an update
+    let updatedProps = {};
+
     // Component constructor
     function comp(nodeElement) {
       initStatic(nodeElement, options);
@@ -50,14 +53,20 @@ export default function ({
 
     const digest = debounce(() => {
       if (!state.initialised) { return; }
-      updateFn.call(comp, state);
+      updateFn.call(comp, state, updatedProps);
+      updatedProps = {};
     }, 1);
 
     // Getter/setter methods
     props.forEach(prop => {
-      comp[prop.name] = getSetProp(prop.name, prop.triggerUpdate, prop.onChange, prop.defaultVal);
+      comp[prop.name] = getSetProp(prop);
 
-      function getSetProp(prop, redigest = false,  onChange = (newVal, state) => {}, defaultVal = null) {
+      function getSetProp({
+        name: prop,
+        triggerUpdate: redigest = false,
+        onChange = (newVal, state) => {},
+        defaultVal = null
+      }) {
         return function(_) {
           const curVal = state[prop];
           if (!arguments.length) { return curVal } // Getter mode
@@ -65,6 +74,8 @@ export default function ({
           const val = _ === undefined ? defaultVal : _; // pick default if value passed is undefined
           state[prop] = val;
           onChange.call(comp, val, state, curVal);
+          updatedProps[prop] = [val, curVal];
+
           if (redigest) { digest(); }
           return comp;
         }
