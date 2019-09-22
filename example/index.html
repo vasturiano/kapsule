@@ -18,7 +18,8 @@
       domElement.appendChild(state.elem);
     },
 
-    update(state) {
+    update(state, changedProps) {
+      console.log('Changed Props:', changedProps);
       state.elem.style.color = state.color;
       state.elem.textContent = state.text;
     }
