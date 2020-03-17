@@ -35,8 +35,8 @@ type PropSetter = (val: PropVal) => KapsuleInstance;
 type KapsuleMethod = (...args: any[]) => any;
 
 export interface KapsuleInstance {
-  (element: HTMLElement): KapsuleInstance;
-  resetProps(): KapsuleInstance;
+  (constructorItem: any): KapsuleInstance;
+  resetProps?(): KapsuleInstance;
   [propOrMethod: string]: PropGetter | PropSetter | KapsuleMethod;
 }
 
