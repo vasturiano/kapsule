@@ -42,6 +42,6 @@ export interface KapsuleInstance {
 
 export type KapsuleClosure = (initOptions?: InitOptions) => KapsuleInstance;
 
-type Kapsule = (cfg: KapsuleCfg) => KapsuleClosure;
+declare function Kapsule(cfg?: KapsuleCfg): KapsuleClosure;
 
 export default Kapsule;
