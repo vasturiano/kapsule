@@ -1,6 +1,6 @@
 {
   "name": "kapsule",
-  "version": "1.13.0",
+  "version": "1.13.1",
   "description": "A closure based Web Component library",
   "unpkg": "dist/kapsule.min.js",
   "main": "dist/kapsule.common.js",
