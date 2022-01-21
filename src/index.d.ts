@@ -36,7 +36,7 @@ type KapsuleMethod = (...args: any[]) => any;
 
 export interface KapsuleInstance {
   (constructorItem: any): KapsuleInstance;
-  resetProps?(): KapsuleInstance;
+  resetProps(): KapsuleInstance;
   [propOrMethod: string]: PropGetter | PropSetter | KapsuleMethod;
 }
 
