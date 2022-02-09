@@ -3,7 +3,7 @@ Kapsule
 
 [![NPM package][npm-img]][npm-url]
 [![Build Size][build-size-img]][build-size-url]
-[![Dependencies][dependencies-img]][dependencies-url]
+[![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 
 A closure based Web Component library, inspired by the [reusable charts pattern](https://bost.ocks.org/mike/chart/) commonly found in [D3](https://d3js.org/) components.
 
@@ -11,54 +11,54 @@ See also [react-kapsule](https://github.com/vasturiano/react-kapsule) for direct
 
 ## Quick start
 
-```
+```js
 import Kapsule from 'kapsule';
 ```
 or
-```
-var Kapsule = require('kapsule');
+```js
+const Kapsule = require('kapsule');
 ```
 or even
-```
+```html
 <script src="//unpkg.com/kapsule"></script>
 ```
 
 ## Usage example
 
 ### Define the component
-```
+```js
 const ColoredText = Kapsule({
     
-    props: {
-        color: { default: 'red' },
-        text: {}
-    },
-    
-    init(domElement, state) {
-        state.elem = document.createElement('span');
-        domElement.appendChild(state.elem);
-    },
-    
-    update(state) {
-        state.elem.style.color = state.color;
-        state.elem.textContent = state.text;
-    }
+  props: {
+    color: { default: 'red' },
+    text: {}
+  },
+
+  init(domElement, state) {
+    state.elem = document.createElement('span');
+    domElement.appendChild(state.elem);
+  },
+
+  update(state) {
+    state.elem.style.color = state.color;
+    state.elem.textContent = state.text;
+  }
 
 });
 ```
 
 ### Instantiate the component
 
-```
+```js
 const myText = ColoredText();
 ```
 
 ### Render
 
-```
+```js
 myText(<myDOMElement>)
-    .color('blue')
-    .text('foo');
+  .color('blue')
+  .text('foo');
 ```
 
 ## API Reference
@@ -73,13 +73,13 @@ Besides these methods, the instance also acts as an initialization function whic
 
 Example:
 
-```
+```js
 const Comp = Kapsule(compConfig);
 
 const myInstance = Comp({ /* options */ })
-    (<myDOMElement>)
-    .prop1('someVal')
-    .prop2('anotherVal');
+  (<myDOMElement>)
+  .prop1('someVal')
+  .prop2('anotherVal');
 ```
 
 ### Component configuration
@@ -88,28 +88,28 @@ The config object passed to Kapsule supports 5 properties: `props`, `methods`, `
 All of these are optional and not required for the component to work, however calling `Kapsule({})` generates a dumb component that has no functionality nor interaction.
 
 Extended example:
-```
+```js
 const Comp = Kapsule({
-    props: { 
-        propName: propConfig, 
-        ... 
-    },
-    methods: { 
-        methodName: function(state, ...args) { ... },
-        ... 
-    },
-    stateInit() {
-        return {
-            stateItem: initVal,
-            ...
-        }
-    },
-    init(domNode, state, componentOptions) {
-        ...
-    },
-    update(state) {
-        ...
+  props: {
+    propName: propConfig,
+    ...
+  },
+  methods: {
+    methodName: function(state, ...args) { ... },
+    ...
+  },
+  stateInit() {
+    return {
+      stateItem: initVal,
+      ...
     }
+  },
+  init(domNode, state, componentOptions) {
+    ...
+  },
+  update(state) {
+    ...
+  }
 });
 ```
 
@@ -122,15 +122,15 @@ If called without an argument, the method will function as a getter, returning t
 The <b>propConfig</b> object supports 3 properties: `default`, `triggerUpdate` and `onChange`.
 
 Extended prop example:
-```
+```js
 {
-    props: {
-        propName: {
-            default: 6,
-            triggerUpdate: false,
-            onChange: function(newVal, state) { ... }
-        }
+  props: {
+    propName: {
+      default: 6,
+      triggerUpdate: false,
+      onChange: function(newVal, state) { ... }
     }
+  }
 }
 ```
  
@@ -166,12 +166,12 @@ Use this method's return object to initialize the values of any internal state. 
 This state initialization gets ran as soon as the component is instantiated, and before the `init` method is called.
 
 Example:
-```
+```js
 function stateInit() {
-    return {
-       stateItem: initVal,
-        ...
-    }
+  return {
+   stateItem: initVal,
+    ...
+  }
 }
 ```
 
@@ -182,14 +182,14 @@ This method initializes the web component by attaching it to a DOM element. This
 This is where DOM operations should be performed for the <b>static</b> parts of the document that do not change throughout its lifecycle.
 
 Example:
-```
+```js
 function init(domNode, state, { label: '' }) {
-    state.elem = document.createElement('div'); // static scaffolding div
-    domElement.appendChild(state.elem);
-    
-    const labelElem = document.createElement('span');
-    labelElem.textContent = label; // static label from component options
-    state.elem.appendChild(labelElem);
+  state.elem = document.createElement('div'); // static scaffolding div
+  domElement.appendChild(state.elem);
+
+  const labelElem = document.createElement('span');
+  labelElem.textContent = label; // static label from component options
+  state.elem.appendChild(labelElem);
 }
 ```
  
@@ -204,16 +204,16 @@ This method is triggered once right after the `init` method finishes, and afterw
 This method should contain the DOM operations for the <b>dynamic</b> parts of the document that change according to the component `props`.
 
 Example:
-```
+```js
 function update(state) {
-    state.elem.style.width = state.pxWidth + 'px';
+  state.elem.style.width = state.pxWidth + 'px';
 }
 ```
 
 Note that multiple calls to `update()` due to prop changes are internally debounced for performance optimization. This is so that the consumer can request multiple chained prop changes without each one triggering an update, but it instead being batched as one update.
 
 The props that were updated since the last update cycle (or all if it's the first update) are included in the second argument `changedProps`. This is an object that lists all the updated props and their previous value. For example:
-```
+```js
 {
   pxWidth: 10, // previous value of pxWidth
   color: 'blue'
@@ -233,15 +233,15 @@ Each instance will get automatically exposed a convenience function `resetProps`
 This will trigger an update call immediately after the props have been reset.
 
 Example:
-```
+```js
 myInstance
-    .propA('someVal')
-    .resetProps(); // propA gets reset to its default value
+  .propA('someVal')
+  .resetProps(); // propA gets reset to its default value
 ```
 
-[npm-img]: https://img.shields.io/npm/v/kapsule.svg
+[npm-img]: https://img.shields.io/npm/v/kapsule
 [npm-url]: https://npmjs.org/package/kapsule
-[build-size-img]: https://img.shields.io/bundlephobia/minzip/kapsule.svg
+[build-size-img]: https://img.shields.io/bundlephobia/minzip/kapsule
 [build-size-url]: https://bundlephobia.com/result?p=kapsule
-[dependencies-img]: https://img.shields.io/david/vasturiano/kapsule.svg
-[dependencies-url]: https://david-dm.org/vasturiano/kapsule
+[npm-downloads-img]: https://img.shields.io/npm/dt/kapsule
+[npm-downloads-url]: https://www.npmtrends.com/kapsule
