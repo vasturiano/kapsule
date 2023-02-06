@@ -14,11 +14,7 @@ See also [react-kapsule](https://github.com/vasturiano/react-kapsule) for direct
 ```js
 import Kapsule from 'kapsule';
 ```
-or
-```js
-const Kapsule = require('kapsule');
-```
-or even
+or using a *script* tag
 ```html
 <script src="//unpkg.com/kapsule"></script>
 ```

@@ -2,10 +2,15 @@
   "name": "kapsule",
   "version": "1.13.8",
   "description": "A closure based Web Component library",
+  "type": "module",
   "unpkg": "dist/kapsule.min.js",
-  "main": "dist/kapsule.common.js",
-  "module": "dist/kapsule.module.js",
+  "main": "dist/kapsule.mjs",
+  "module": "dist/kapsule.mjs",
   "types": "dist/kapsule.d.ts",
+  "exports": {
+    "umd": "./dist/kapsule.min.js",
+    "default": "./dist/kapsule.mjs"
+  },
   "sideEffects": false,
   "repository": {
     "type": "git",
@@ -41,17 +46,18 @@
     "debounce": "^1.2.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.18.10",
-    "@babel/plugin-proposal-class-properties": "^7.18.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.18.9",
-    "@babel/preset-env": "^7.18.10",
-    "@rollup/plugin-babel": "^5.3.1",
-    "@rollup/plugin-commonjs": "^22.0.2",
-    "@rollup/plugin-node-resolve": "^13.3.0",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.78.0",
-    "rollup-plugin-dts": "^4.2.2",
-    "rollup-plugin-terser": "^7.0.2",
-    "typescript": "^4.7.4"
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2",
+    "@rollup/plugin-babel": "^6.0.3",
+    "@rollup/plugin-commonjs": "^24.0.1",
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "rimraf": "^4.1.2",
+    "rollup": "^3.14.0",
+    "rollup-plugin-dts": "^5.1.1",
+    "typescript": "^4.9.5"
+  },
+  "engines": {
+    "node": ">=12"
   }
 }
