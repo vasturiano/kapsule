@@ -1,4 +1,4 @@
-import debounce from 'debounce';
+import { debounce } from 'lodash-es';
 
 class Prop {
   constructor(name, {
