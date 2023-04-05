@@ -43,7 +43,7 @@
     "dist/**/*"
   ],
   "dependencies": {
-    "debounce": "^1.2.1"
+    "lodash-es": "4"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
