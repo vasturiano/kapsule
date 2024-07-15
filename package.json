@@ -9,7 +9,8 @@
   "types": "dist/kapsule.d.ts",
   "exports": {
     "umd": "./dist/kapsule.min.js",
-    "default": "./dist/kapsule.mjs"
+    "default": "./dist/kapsule.mjs",
+    "types": "./dist/kapsule.d.ts"
   },
   "sideEffects": false,
   "repository": {
