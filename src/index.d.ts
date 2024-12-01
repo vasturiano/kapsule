@@ -4,7 +4,6 @@ type PropVal = any;
 type StateVal = any;
 
 interface State {
-  initialised: boolean;
   _rerender: () => void;
   [stateItem: string]: StateVal;
 }
@@ -31,17 +30,15 @@ export interface KapsuleCfg {
 }
 
 type PropGetter = () => PropVal;
-type PropSetter = (val: PropVal) => KapsuleInstance;
+type PropSetter = (val: PropVal) => KapsuleClass;
 type KapsuleMethod = (...args: any[]) => any;
 
-export interface KapsuleInstance {
-  (constructorItem: any): KapsuleInstance;
-  resetProps(): KapsuleInstance;
+export declare class KapsuleClass {
+  constructor(element: HTMLElement, initOptions?: InitOptions);
+  resetProps(): KapsuleClass;
   [propOrMethod: string]: PropGetter | PropSetter | KapsuleMethod;
 }
 
-export type KapsuleClosure = (initOptions?: InitOptions) => KapsuleInstance;
-
-declare function Kapsule(cfg?: KapsuleCfg): KapsuleClosure;
+declare function Kapsule(cfg?: KapsuleCfg): KapsuleClass;
 
 export default Kapsule;

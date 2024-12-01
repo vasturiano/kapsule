@@ -5,7 +5,7 @@ Kapsule
 [![Build Size][build-size-img]][build-size-url]
 [![NPM Downloads][npm-downloads-img]][npm-downloads-url]
 
-A closure based Web Component library, inspired by the [reusable charts pattern](https://bost.ocks.org/mike/chart/) commonly found in [D3](https://d3js.org/) components.
+A closure/class based Web Component library, loosely inspired by the [reusable charts pattern](https://bost.ocks.org/mike/chart/) commonly found in [D3](https://d3js.org/) components.
 
 See also [react-kapsule](https://github.com/vasturiano/react-kapsule) for direct integration with React.
 
@@ -46,13 +46,13 @@ const ColoredText = Kapsule({
 ### Instantiate the component
 
 ```js
-const myText = ColoredText();
+const myText = new ColoredText(<myDOMElement>);
 ```
 
-### Render
+### (Re-)Rendering
 
 ```js
-myText(<myDOMElement>)
+myText
   .color('blue')
   .text('foo');
 ```
@@ -63,17 +63,15 @@ myText(<myDOMElement>)
 
 <b>Kapsule</b>([<i>config</i>])
 
-This returns a new closure component that can be instantiated by calling as a regular function, with an optional `options` object as argument. The `options` object gets passed verbatim to the `init` object for interpretation.
+This returns a new class that encapsulates the web component. The returned class constructor expects a DOM element argument, onto which the component will be attached throughout its lifecycle. It also accepts an optional `options` object as second argument. The `options` object gets passed verbatim to the `init` object for interpretation. The instantiation triggers the internal `init` method as specified in the config.
 The component's instance is an object of methods (defined by its config `props` and `methods`) that can be called for interacting with the component.
-Besides these methods, the instance also acts as an initialization function which should be called to attach the component to a DOM node, with the DOM element as sole argument. This triggers the internal `init` method as specified in the config.
 
 Example:
 
 ```js
 const Comp = Kapsule(compConfig);
 
-const myInstance = Comp({ /* options */ })
-  (<myDOMElement>)
+const myInstance = new Comp(<myDOMElement>, { /* options */ })
   .prop1('someVal')
   .prop2('anotherVal');
 ```
@@ -159,7 +157,7 @@ The `this` context of each of this methods is set to the component's instance. I
 #### <b>stateInit(componentOptions)</b>
  
 Use this method's return object to initialize the values of any internal state. This should only be used for state that is not exposed externally via `props`.
-This state initialization gets ran as soon as the component is instantiated, and before the `init` method is called.
+This state initialization gets ran as soon as the component is instantiated, and right before the `init` method is called.
 
 Example:
 ```js
@@ -173,7 +171,7 @@ function stateInit() {
 
 #### <b>init(domNode, state, componentOptions)</b>
 
-This method initializes the web component by attaching it to a DOM element. This method gets triggered only when the instance is called by the consumer as `myInstance(<domElement>)`. This is generally only called once for the whole lifecycle of the component's instance.
+This method initializes the web component by attaching it to a DOM element. This method is only called once, during the component instantiation.
 
 This is where DOM operations should be performed for the <b>static</b> parts of the document that do not change throughout its lifecycle.
 
@@ -188,8 +186,6 @@ function init(domNode, state, { label: '' }) {
   state.elem.appendChild(labelElem);
 }
 ```
- 
-An internal state variable `initialised` indicates whether the instance has been through its `init` method or not. `state.initialised` is set to `true` right after the first `init` method call.
  
 The `this` context of this method is set to the component's instance.
 Returning a value from this method has no effect.

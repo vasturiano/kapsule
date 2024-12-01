@@ -28,14 +28,12 @@
   });
 
   // Instantiate
-  const myText = ColoredText();
-
-  // Render
-  myText(document.body)
+  const myText = new ColoredText(document.body)
     .color('blue')
     .text('foo');
 
   setTimeout(() => {
+    // Update
     myText.color('orange')
       .text('bar');
   }, 2000);
