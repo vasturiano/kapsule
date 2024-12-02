@@ -109,7 +109,7 @@ export default function ({
     comp.resetProps(); // Apply all prop defaults
     state._rerender = digest; // Expose digest method
 
-    classMode && comp(nodeElement);
+    classMode && nodeElement && comp(nodeElement);
 
     return comp;
   }
@@ -166,7 +166,7 @@ export default function ({
       Object.entries(aliases).forEach(([alias, target]) => this[alias] = this[target]);
 
       this.resetProps(); // Apply all prop defaults
-      initFn.call(this, nodeElement, state, options);
+      nodeElement && initFn.call(this, nodeElement, state, options);
       digest();
     }
 
