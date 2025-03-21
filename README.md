@@ -16,7 +16,7 @@ import Kapsule from 'kapsule';
 ```
 or using a *script* tag
 ```html
-<script src="//unpkg.com/kapsule"></script>
+<script src="//cdn.jsdelivr.net/npm/kapsule"></script>
 ```
 
 ## Usage example
